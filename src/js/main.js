@@ -3,8 +3,6 @@
 import "./../scss/style.scss";
 // import "data.js";
 
-const quizApp = function () {};
-
 const questionData = [
   {
     category: "Allgemeine Wissenschaft",
@@ -37,7 +35,36 @@ const questionData = [
     incorrectAnswers: ["1916", "1920", "1939"],
     question: "In welchem Jahr endete der erste Weltkrieg?",
   },
+
+  {
+    category: "Musik",
+    id: "1492086375",
+    correctAnswer: "Flöte",
+    incorrectAnswers: ["Geige", "Klavier", "Trompete"],
+    question:
+      'Welches Instrument spielt der Protagonist in Mozart\'s "Die Zauberflöte"?',
+  },
 ];
 
 console.log(questionData);
+
+const quizApp = function () {
+  const questionEl = document.querySelector("#question");
+
+  const answerBtn_01 = document.querySelector("#answerButton_01");
+  const answerBtn_02 = document.querySelector("#answerButton_02");
+  const answerBtn_03 = document.querySelector("#answerButton_03");
+  const answerBtn_04 = document.querySelector("#answerButton_04");
+
+  const displaySolutionBtn = document.querySelector("#result");
+  const nextBtn = document.querySelector("#next");
+
+  //   state
+
+  const state = {
+    points: 0,
+    penaltyPoints: 0,
+  };
+};
+
 quizApp();

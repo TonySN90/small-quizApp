@@ -12,7 +12,6 @@ body {
 
 .wrapper {
   color: $color-font-bright;
-  // background-color: rgba(255, 0, 0, 0.113);
 
   display: flex;
   flex-direction: column;
@@ -20,6 +19,7 @@ body {
 
   h1 {
     font-size: 3rem;
+    text-align: center;
   }
 
   .container {

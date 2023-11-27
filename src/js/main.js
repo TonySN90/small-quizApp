@@ -46,7 +46,7 @@ const questionData = [
   },
 ];
 
-console.log(questionData);
+// console.log(questionData);
 
 const quizApp = function () {
   const questionEl = document.querySelector("#question");
@@ -62,9 +62,39 @@ const quizApp = function () {
   //   state
 
   const state = {
+    currentQuestion: 1,
     points: 0,
     penaltyPoints: 0,
   };
+
+  const display = function () {
+    let data = questionData[state.currentQuestion];
+
+    const shuffle = (arr) => {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (1 + i));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    };
+
+    let answers = [
+      data.correctAnswer,
+      data.incorrectAnswers[0],
+      data.incorrectAnswers[1],
+      data.incorrectAnswers[2],
+    ];
+
+    shuffle(answers);
+    console.log(answers);
+
+    questionEl.innerHTML = data.question;
+    answerBtn_01.innerHTML = answers[0];
+    answerBtn_02.innerHTML = answers[1];
+    answerBtn_03.innerHTML = answers[2];
+    answerBtn_04.innerHTML = answers[3];
+  };
+
+  display();
 };
 
 quizApp();

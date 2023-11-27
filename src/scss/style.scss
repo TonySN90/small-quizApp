@@ -29,7 +29,7 @@ body {
     text-align: center;
   }
 
-  .container {
+  .containerButton {
     width: 52rem;
 
     display: flex;
@@ -55,13 +55,31 @@ body {
         color: $color-font-bright;
       }
     }
+    .correct {
+      background-color: #4fee4f;
+      border: 5px solid #4fee4f;
+
+      &:hover {
+        background-color: #4fee4f;
+        border: 5px solid #4fee4f;
+      }
+    }
+
+    .wrong {
+      background-color: #cc3333;
+      border: 5px solid #cc3333;
+
+      &:hover {
+        background-color: #cc3333;
+        border: 5px solid #cc3333;
+      }
+    }
   }
 
   .containerButtons {
     width: 100%;
     display: flex;
     justify-content: space-around;
-    // background-color: red;
     margin-top: 3rem;
 
     .navButtons {

@@ -46,15 +46,13 @@ const questionData = [
   },
 ];
 
-// console.log(questionData);
-
 const quizApp = function () {
   const questionEl = document.querySelector("#question");
 
-  const answerBtn_01 = document.querySelector("#answerButton_01");
-  const answerBtn_02 = document.querySelector("#answerButton_02");
-  const answerBtn_03 = document.querySelector("#answerButton_03");
-  const answerBtn_04 = document.querySelector("#answerButton_04");
+  const answerBtn_01 = document.querySelector("#answerButton_00");
+  const answerBtn_02 = document.querySelector("#answerButton_01");
+  const answerBtn_03 = document.querySelector("#answerButton_02");
+  const answerBtn_04 = document.querySelector("#answerButton_03");
 
   const displaySolutionBtn = document.querySelector("#result");
   const nextBtn = document.querySelector("#next");
@@ -62,21 +60,14 @@ const quizApp = function () {
   //   state
 
   const state = {
+    correctAnswerIndex: 0,
     currentQuestion: 1,
     points: 0,
     penaltyPoints: 0,
   };
 
-  const display = function () {
+  const displayAnswers = function () {
     let data = questionData[state.currentQuestion];
-
-    const shuffle = (arr) => {
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (1 + i));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-    };
-
     let answers = [
       data.correctAnswer,
       data.incorrectAnswers[0],
@@ -84,17 +75,54 @@ const quizApp = function () {
       data.incorrectAnswers[2],
     ];
 
+    const shuffle = (arr) => {
+      // Fisher-Yates
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (1 + i));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    };
+
     shuffle(answers);
-    console.log(answers);
 
     questionEl.innerHTML = data.question;
     answerBtn_01.innerHTML = answers[0];
     answerBtn_02.innerHTML = answers[1];
     answerBtn_03.innerHTML = answers[2];
     answerBtn_04.innerHTML = answers[3];
+
+    // store index of correct answer
+    state.correctAnswerIndex = answers.indexOf(data.correctAnswer);
   };
 
-  display();
+  const initialize = function () {
+    displayAnswers();
+  };
+
+  const checkSelection = function (e) {
+    const selectedButton = e.target;
+    const targetID = +selectedButton.dataset.id;
+    const correctBtn = document.querySelector(
+      `#answerButton_0${state.correctAnswerIndex}`
+    );
+
+    if (targetID === state.correctAnswerIndex) {
+      // if correct
+      selectedButton.classList.add("correct");
+    } else {
+      // if incorrect
+      correctBtn.classList.add("correct");
+      selectedButton.classList.add("wrong");
+    }
+  };
+
+  initialize();
+
+  // Click function
+  answerBtn_01.addEventListener("click", checkSelection);
+  answerBtn_02.addEventListener("click", checkSelection);
+  answerBtn_03.addEventListener("click", checkSelection);
+  answerBtn_04.addEventListener("click", checkSelection);
 };
 
 quizApp();

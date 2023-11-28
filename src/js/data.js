@@ -69,13 +69,6 @@ export const questionData = [
     question: 'Welcher Superheld trägt den Spitznamen "Der Mann aus Stahl"?',
   },
   {
-    category: "Popkultur",
-    id: "2998624777",
-    correctAnswer: "Superman",
-    incorrectAnswers: ["Spider-Man", "Iron Man", "Batman"],
-    question: 'Welcher Superheld trägt den Spitznamen "Der Mann aus Stahl"?',
-  },
-  {
     category: "Geschichte",
     id: "3782256487",
     correctAnswer: "George Washington",

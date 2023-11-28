@@ -3,77 +3,94 @@
 import "./../scss/style.scss";
 import { questionData } from "./data.js";
 
+// Elements
+const questionEl = document.querySelector("#question");
+const answerButtons = document.querySelectorAll(".button");
+const answerBtn_01 = document.querySelector("#answerButton_00");
+const answerBtn_02 = document.querySelector("#answerButton_01");
+const answerBtn_03 = document.querySelector("#answerButton_02");
+const answerBtn_04 = document.querySelector("#answerButton_03");
+const displaySolutionBtn = document.querySelector("#result");
+const nextBtn = document.querySelector("#next");
+const pointsEl = document.querySelector("#points");
+
 const quizApp = function () {
-  const questionEl = document.querySelector("#question");
-
-  const answerButtons = document.querySelectorAll(".button");
-  const answerBtn_01 = document.querySelector("#answerButton_00");
-  const answerBtn_02 = document.querySelector("#answerButton_01");
-  const answerBtn_03 = document.querySelector("#answerButton_02");
-  const answerBtn_04 = document.querySelector("#answerButton_03");
-
-  const displaySolutionBtn = document.querySelector("#result");
-  const nextBtn = document.querySelector("#next");
-  const pointsEl = document.querySelector("#points");
-
   const state = {
     correctAnswerIndex: 0,
     currentQuestion: 0,
-    totalQuestions: 25,
     points: 0,
-    checked: true,
+    checked: false,
+    displayedQuestionIndices: [],
   };
 
-  const displayAnswers = function () {
-    let data = questionData[state.currentQuestion];
-    let answers = [
+  const shuffleAnswers = function (arr) {
+    // Fisher-Yates
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (1 + i));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+  };
+
+  const updateDOM = function (question, answers) {
+    questionEl.innerHTML = question;
+    answerBtn_01.innerHTML = answers[0];
+    answerBtn_02.innerHTML = answers[1];
+    answerBtn_03.innerHTML = answers[2];
+    answerBtn_04.innerHTML = answers[3];
+  };
+
+  const displayQuestion = function () {
+    const remainingQuestions = questionData.filter(
+      (_, index) => !state.displayedQuestionIndices.includes(index)
+    );
+
+    if (remainingQuestions.length === 0) {
+      state.displayedQuestionIndices.length = 0;
+    }
+
+    const randomQuestionIndex = Math.floor(
+      Math.random() * remainingQuestions.length
+    );
+
+    const data = remainingQuestions[randomQuestionIndex];
+    state.displayedQuestionIndices.push(questionData.indexOf(data));
+
+    const answers = [
       data.correctAnswer,
       data.incorrectAnswers[0],
       data.incorrectAnswers[1],
       data.incorrectAnswers[2],
     ];
 
-    const shuffle = (arr) => {
-      // Fisher-Yates
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (1 + i));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-    };
-
-    shuffle(answers);
-
-    questionEl.innerHTML = data.question;
-    answerBtn_01.innerHTML = answers[0];
-    answerBtn_02.innerHTML = answers[1];
-    answerBtn_03.innerHTML = answers[2];
-    answerBtn_04.innerHTML = answers[3];
+    shuffleAnswers(answers);
+    updateDOM(data.question, answers);
 
     // store index of correct answer
     state.correctAnswerIndex = answers.indexOf(data.correctAnswer);
   };
 
   const checkSelection = function (e) {
-    if (state.checked) {
+    if (!state.checked) {
       const selectedButton = e.target;
       const targetID = +selectedButton.dataset.id;
       const correctBtn = document.querySelector(
         `#answerButton_0${state.correctAnswerIndex}`
       );
 
+      const handleAnswer = (operator, truthValue) => {
+        state.checked = true;
+        calculatePoints(operator, 1);
+        displayPoints();
+        selectedButton.classList.add(truthValue);
+      };
+
       if (targetID === state.correctAnswerIndex) {
         // if correct
-        state.checked = false;
-        state.points += 1;
-        displayPoints();
-        selectedButton.classList.add("correct");
+        handleAnswer("+", "correct");
       } else {
         // if incorrect
-        state.checked = false;
-        calculatePoints("-", 1);
-        displayPoints();
+        handleAnswer("-", "wrong");
         correctBtn.classList.add("correct");
-        selectedButton.classList.add("wrong");
       }
     }
   };
@@ -86,10 +103,12 @@ const quizApp = function () {
   };
 
   const prepareNextQuestion = function () {
-    state.checked = true;
-    state.currentQuestion += 1;
-    displayAnswers();
-    resetButtons();
+    if (state.checked) {
+      state.currentQuestion += 1;
+      displayQuestion();
+      resetButtons();
+    }
+    state.checked = false;
   };
 
   const calculatePoints = function (operator, value) {
@@ -105,28 +124,28 @@ const quizApp = function () {
   };
 
   const displaySolution = function () {
-    calculatePoints("-", 2);
-    displayPoints();
-    const correctBtn = document.querySelector(
-      `#answerButton_0${state.correctAnswerIndex}`
-    );
-
-    correctBtn.classList.add("correct");
-    state.checked = false;
+    if (!state.checked) {
+      const correctBtn = document.querySelector(
+        `#answerButton_0${state.correctAnswerIndex}`
+      );
+      calculatePoints("-", 2);
+      displayPoints();
+      correctBtn.classList.add("correct");
+      state.checked = true;
+    }
   };
 
   const initialize = function () {
-    displayAnswers();
+    displayQuestion();
   };
 
   initialize();
 
-  // Click function
+  // Click functions
   answerBtn_01.addEventListener("click", checkSelection);
   answerBtn_02.addEventListener("click", checkSelection);
   answerBtn_03.addEventListener("click", checkSelection);
   answerBtn_04.addEventListener("click", checkSelection);
-
   nextBtn.addEventListener("click", prepareNextQuestion);
   displaySolutionBtn.addEventListener("click", displaySolution);
 };

@@ -29,7 +29,7 @@ body {
     text-align: center;
   }
 
-  .containerButton {
+  .containerAnswerButtons {
     width: 52rem;
 
     display: flex;
@@ -56,27 +56,28 @@ body {
       }
     }
     .correct {
-      background-color: #4fee4f;
-      border: 5px solid #4fee4f;
+      background-color: $color-correct;
+      border: 5px solid $color-correct;
 
       &:hover {
-        background-color: #4fee4f;
-        border: 5px solid #4fee4f;
+        background-color: $color-correct;
+        border: 5px solid $color-correct;
+        // color: $color-bg-dark;
       }
     }
 
     .wrong {
-      background-color: #cc3333;
-      border: 5px solid #cc3333;
+      background-color: $color-wrong;
+      border: 5px solid $color-wrong;
 
       &:hover {
-        background-color: #cc3333;
-        border: 5px solid #cc3333;
+        background-color: $color-wrong;
+        border: 5px solid $color-wrong;
       }
     }
   }
 
-  .containerButtons {
+  .containerNavButtons {
     width: 100%;
     display: flex;
     justify-content: space-around;

@@ -49,6 +49,7 @@ const questionData = [
 const quizApp = function () {
   const questionEl = document.querySelector("#question");
 
+  const answerButtons = document.querySelectorAll(".button");
   const answerBtn_01 = document.querySelector("#answerButton_00");
   const answerBtn_02 = document.querySelector("#answerButton_01");
   const answerBtn_03 = document.querySelector("#answerButton_02");
@@ -56,14 +57,14 @@ const quizApp = function () {
 
   const displaySolutionBtn = document.querySelector("#result");
   const nextBtn = document.querySelector("#next");
-
-  //   state
+  const pointsEl = document.querySelector("#points");
 
   const state = {
     correctAnswerIndex: 0,
-    currentQuestion: 1,
+    currentQuestion: 0,
+    totalQuestions: 25,
     points: 0,
-    penaltyPoints: 0,
+    checked: true,
   };
 
   const displayAnswers = function () {
@@ -95,25 +96,69 @@ const quizApp = function () {
     state.correctAnswerIndex = answers.indexOf(data.correctAnswer);
   };
 
-  const initialize = function () {
-    displayAnswers();
+  const checkSelection = function (e) {
+    if (state.checked) {
+      const selectedButton = e.target;
+      const targetID = +selectedButton.dataset.id;
+      const correctBtn = document.querySelector(
+        `#answerButton_0${state.correctAnswerIndex}`
+      );
+
+      if (targetID === state.correctAnswerIndex) {
+        // if correct
+        state.checked = false;
+        state.points += 1;
+        displayPoints();
+        selectedButton.classList.add("correct");
+      } else {
+        // if incorrect
+        state.checked = false;
+        calculatePoints("-", 1);
+        displayPoints();
+        correctBtn.classList.add("correct");
+        selectedButton.classList.add("wrong");
+      }
+    }
   };
 
-  const checkSelection = function (e) {
-    const selectedButton = e.target;
-    const targetID = +selectedButton.dataset.id;
+  const resetButtons = function () {
+    answerButtons.forEach((btn) => {
+      btn.classList.remove("wrong");
+      btn.classList.remove("correct");
+    });
+  };
+
+  const prepareNextQuestion = function () {
+    state.checked = true;
+    state.currentQuestion += 1;
+    displayAnswers();
+    resetButtons();
+  };
+
+  const calculatePoints = function (operator, value) {
+    if (operator === "+") {
+      state.points += value;
+    } else if (operator === "-" && state.points > 0) {
+      state.points = Math.max(0, state.points - value);
+    }
+  };
+
+  const displayPoints = function () {
+    pointsEl.innerHTML = `Punkte: ${state.points}`;
+  };
+
+  const displaySolution = function () {
+    calculatePoints("-", 2);
+    displayPoints();
     const correctBtn = document.querySelector(
       `#answerButton_0${state.correctAnswerIndex}`
     );
 
-    if (targetID === state.correctAnswerIndex) {
-      // if correct
-      selectedButton.classList.add("correct");
-    } else {
-      // if incorrect
-      correctBtn.classList.add("correct");
-      selectedButton.classList.add("wrong");
-    }
+    correctBtn.classList.add("correct");
+  };
+
+  const initialize = function () {
+    displayAnswers();
   };
 
   initialize();
@@ -123,6 +168,9 @@ const quizApp = function () {
   answerBtn_02.addEventListener("click", checkSelection);
   answerBtn_03.addEventListener("click", checkSelection);
   answerBtn_04.addEventListener("click", checkSelection);
+
+  nextBtn.addEventListener("click", prepareNextQuestion);
+  displaySolutionBtn.addEventListener("click", displaySolution);
 };
 
 quizApp();

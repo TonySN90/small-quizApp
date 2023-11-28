@@ -21,6 +21,7 @@ const quizApp = function () {
     points: 0,
     checked: false,
     displayedQuestionIndices: [],
+    remainingQuestions: [],
   };
 
   const shuffleAnswers = function (arr) {
@@ -39,20 +40,23 @@ const quizApp = function () {
     answerBtn_04.innerHTML = answers[3];
   };
 
-  const displayQuestion = function () {
-    const remainingQuestions = questionData.filter(
+  const displayRandomQuestion = function () {
+    // Generate a list of the remaining questions that are not displayed
+    state.remainingQuestions = questionData.filter(
       (_, index) => !state.displayedQuestionIndices.includes(index)
     );
 
-    if (remainingQuestions.length === 0) {
+    // If all questions have been displayed, reset the array
+    if (state.remainingQuestions.length === 0) {
       state.displayedQuestionIndices.length = 0;
     }
 
+    // Choose a random question from the remaining questions
     const randomQuestionIndex = Math.floor(
-      Math.random() * remainingQuestions.length
+      Math.random() * state.remainingQuestions.length
     );
 
-    const data = remainingQuestions[randomQuestionIndex];
+    const data = state.remainingQuestions[randomQuestionIndex];
     state.displayedQuestionIndices.push(questionData.indexOf(data));
 
     const answers = [
@@ -105,7 +109,10 @@ const quizApp = function () {
   const prepareNextQuestion = function () {
     if (state.checked) {
       state.currentQuestion += 1;
-      displayQuestion();
+      if (questionData.length === state.displayedQuestionIndices.length) {
+        console.log("Du hast bestanden");
+      }
+      displayRandomQuestion();
       resetButtons();
     }
     state.checked = false;
@@ -136,7 +143,7 @@ const quizApp = function () {
   };
 
   const initialize = function () {
-    displayQuestion();
+    displayRandomQuestion();
   };
 
   initialize();

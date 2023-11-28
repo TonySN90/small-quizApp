@@ -7,7 +7,7 @@
     <title>Quiz App</title>
   </head>
   <body>
-    <div class="wrapper">
+    <div id="wrapper">
       <h1 id="question">Wie heisst die Hauptstadt von Deutschland?</h1>
       <div class="containerAnswerButtons">
         <div id="answerButton_00" data-id="0" class="button">Hamburg</div>
@@ -22,6 +22,16 @@
         </div>
         <div id="points">Punkte: 0</div>
       </div>
+    </div>
+    <div id="overlayContainer">
+      <div class="greeting overlay">
+        <p>
+          Willkommen bei Blitz-Quiz, dein Quiz mit Biss. Hier wird nicht lang
+          gelabert, leg gleich los und bring dein Brain zum schmelzen..! 🤯
+        </p>
+        <div class="button">Lets go!</div>
+      </div>
+      <div class="finish overlay"></div>
     </div>
     <script type="module" src="./js/main.js"></script>
   </body>

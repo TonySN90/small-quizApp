@@ -15,7 +15,7 @@ body {
   box-sizing: border-box;
 }
 
-.wrapper {
+#wrapper {
   color: $color-font-bright;
   width: 820px;
   height: 500px;
@@ -125,5 +125,55 @@ body {
       color: $color-bg-dark;
       cursor: default;
     }
+  }
+}
+
+#overlayContainer {
+  position: fixed;
+
+  .overlay {
+    width: 820px;
+    height: 500px;
+    padding: 2rem;
+
+    background-color: $color-primary;
+    border-radius: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    font-size: 2.2rem;
+    font-weight: bold;
+  }
+
+  .button {
+    width: 10rem;
+    background-color: $color-bg-dark;
+    color: $color-primary;
+    text-align: center;
+    border: 3px solid $color-primary;
+    border-radius: 0.5rem;
+    transition: all 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $color-primary;
+      color: $color-bg-dark;
+      border: 3px solid $color-bg-dark;
+    }
+  }
+
+  .greeting {
+    // display: none;
+  }
+
+  .finish {
+    display: none;
+  }
+
+  p {
+    text-align: center;
   }
 }

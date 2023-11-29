@@ -27,11 +27,18 @@
       <div class="greeting overlay">
         <p>
           Willkommen bei Blitz-Quiz, dein Quiz mit Biss. Hier wird nicht lang
-          gelabert, leg gleich los und bring dein Brain zum schmelzen..! 🤯
+          gelabert, also leg gleich los und bring dein Brain zum schmelzen..! 🤯
         </p>
-        <div class="button">Lets go!</div>
+        <div id="startButton" class="button">Lets go!</div>
       </div>
-      <div class="finish overlay"></div>
+      <div class="finish overlay hidden">
+        <p class="finishText">
+          Schlecht, schlechter..Du ! xD Geh in die Ecke und schäm dich oder
+          machs nochmal..! 🤨
+        </p>
+        <p id="overlayPoints">Punkte: 12</p>
+        <div id="againButton" class="button">Nochmal!</div>
+      </div>
     </div>
     <script type="module" src="./js/main.js"></script>
   </body>

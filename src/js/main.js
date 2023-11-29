@@ -4,15 +4,19 @@ import "./../scss/style.scss";
 import { questionData } from "./data.js";
 
 // Elements
+const wrapper = document.querySelector("#wrapper");
 const questionEl = document.querySelector("#question");
 const answerButtons = document.querySelectorAll(".button");
 const answerBtn_01 = document.querySelector("#answerButton_00");
 const answerBtn_02 = document.querySelector("#answerButton_01");
 const answerBtn_03 = document.querySelector("#answerButton_02");
 const answerBtn_04 = document.querySelector("#answerButton_03");
+const startBtn = document.querySelector("#startButton");
+const againBtn = document.querySelector("#againButton");
 const displaySolutionBtn = document.querySelector("#result");
 const nextBtn = document.querySelector("#next");
 const pointsEl = document.querySelector("#points");
+const overlayPointsEl = document.querySelector("#overlayPoints");
 
 const quizApp = function () {
   const state = {
@@ -84,7 +88,7 @@ const quizApp = function () {
       const handleAnswer = (operator, truthValue) => {
         state.checked = true;
         calculatePoints(operator, 1);
-        displayPoints();
+        displayPoints(pointsEl);
         selectedButton.classList.add(truthValue);
       };
 
@@ -110,10 +114,14 @@ const quizApp = function () {
     if (state.checked) {
       state.currentQuestion += 1;
       if (questionData.length === state.displayedQuestionIndices.length) {
-        console.log("Du hast bestanden");
+        hideWrapper();
+        displayFinishOverlay();
+        resetButtons();
+        displayPoints(overlayPointsEl);
+      } else {
+        displayRandomQuestion();
+        resetButtons();
       }
-      displayRandomQuestion();
-      resetButtons();
     }
     state.checked = false;
   };
@@ -126,8 +134,8 @@ const quizApp = function () {
     }
   };
 
-  const displayPoints = function () {
-    pointsEl.innerHTML = `Punkte: ${state.points}`;
+  const displayPoints = function (el) {
+    el.innerHTML = `Punkte: ${state.points}`;
   };
 
   const displaySolution = function () {
@@ -136,10 +144,38 @@ const quizApp = function () {
         `#answerButton_0${state.correctAnswerIndex}`
       );
       calculatePoints("-", 2);
-      displayPoints();
+      displayPoints(pointsEl);
       correctBtn.classList.add("correct");
       state.checked = true;
     }
+  };
+
+  const resetQuiz = function () {
+    state.currentQuestion = 0;
+    state.displayedQuestionIndices = [];
+    state.remainingQuestions = [];
+    state.points = 0;
+    displayPoints(pointsEl);
+  };
+
+  const hideGreetingOverlay = function () {
+    document.querySelector(".greeting").classList.add("hidden");
+  };
+
+  const displayFinishOverlay = function () {
+    document.querySelector(".finish").classList.remove("hidden");
+  };
+
+  const hideFinishOverlay = function () {
+    document.querySelector(".finish").classList.add("hidden");
+  };
+
+  const displayWrapper = function () {
+    wrapper.style.display = "flex";
+  };
+
+  const hideWrapper = function () {
+    wrapper.style.display = "none";
   };
 
   const initialize = function () {
@@ -149,6 +185,18 @@ const quizApp = function () {
   initialize();
 
   // Click functions
+  startBtn.addEventListener("click", () => {
+    hideGreetingOverlay();
+    displayWrapper();
+  });
+
+  againBtn.addEventListener("click", () => {
+    resetQuiz();
+    displayWrapper();
+    hideFinishOverlay();
+    initialize();
+  });
+
   answerBtn_01.addEventListener("click", checkSelection);
   answerBtn_02.addEventListener("click", checkSelection);
   answerBtn_03.addEventListener("click", checkSelection);

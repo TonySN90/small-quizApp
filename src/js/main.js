@@ -18,12 +18,13 @@ const nextBtn = document.querySelector("#next");
 const pointsEl = document.querySelector("#points");
 const overlayPointsEl = document.querySelector("#overlayPoints");
 const finishText = document.querySelector(".finishText");
+const QUESTION_LIMIT = 15;
 
 const quizApp = function () {
   const state = {
     correctAnswerIndex: 0,
     answeredQuestions: 0,
-    questionsLimit: 5,
+    questionsLimit: QUESTION_LIMIT,
     points: 0,
     checked: false,
     displayedQuestionIndices: [],
@@ -121,7 +122,7 @@ const quizApp = function () {
       good: "Nicht schlecht, gibt aber noch Luft nach oben, wie deine Qualität im Bett..! 🤨",
       super:
         "Du Glücklicher, dein Gehirn hat also doch noch Sinn in deinem Leben..! 🤨",
-      perfect: "Streber..! 🤨",
+      perfect: "Mhh..Das geht doch nicht mit rechten Dingen zu..! 🤨",
     };
 
     switch (true) {
@@ -168,7 +169,7 @@ const quizApp = function () {
   };
 
   const displayPoints = function (el) {
-    el.innerHTML = `Punkte: ${state.points}`;
+    el.innerHTML = `Punkte: ${state.points} von ${state.questionsLimit}`;
   };
 
   const displaySolution = function () {
@@ -185,7 +186,7 @@ const quizApp = function () {
 
   const resetQuiz = function () {
     state.answeredQuestions = 0;
-    state.questionsLimit = 0;
+    state.questionsLimit = QUESTION_LIMIT;
     state.displayedQuestionIndices = [];
     state.remainingQuestions = [];
     state.points = 0;

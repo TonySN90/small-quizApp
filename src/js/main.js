@@ -17,11 +17,13 @@ const displaySolutionBtn = document.querySelector("#result");
 const nextBtn = document.querySelector("#next");
 const pointsEl = document.querySelector("#points");
 const overlayPointsEl = document.querySelector("#overlayPoints");
+const finishText = document.querySelector(".finishText");
 
 const quizApp = function () {
   const state = {
     correctAnswerIndex: 0,
-    questionsTLimit: 0,
+    answeredQuestions: 0,
+    questionsLimit: 5,
     points: 0,
     checked: false,
     displayedQuestionIndices: [],
@@ -110,15 +112,45 @@ const quizApp = function () {
     });
   };
 
+  const displayFinalWords = function () {
+    const pointsInPercent = (state.points / state.questionsLimit) * 100;
+    const slogans = {
+      bad: "Schlecht, schlechter..Du ! xD Geh in die Ecke und schäm dich oder versuchs nochmal..! 🤨",
+      middle:
+        "Naja, ne geistige Leuchte bist noch nicht aber zum Überleben reichts..! 🤨",
+      good: "Nicht schlecht, gibt aber noch Luft nach oben, wie deine Qualität im Bett..! 🤨",
+      super:
+        "Du Glücklicher, dein Gehirn hat also doch noch Sinn in deinem Leben..! 🤨",
+      perfect: "Streber..! 🤨",
+    };
+
+    switch (true) {
+      case pointsInPercent === 100:
+        finishText.innerHTML = slogans.perfect;
+        break;
+      case pointsInPercent >= 85:
+        finishText.innerHTML = slogans.super;
+        break;
+      case pointsInPercent >= 65:
+        finishText.innerHTML = slogans.good;
+        break;
+      case pointsInPercent >= 50:
+        finishText.innerHTML = slogans.middle;
+        break;
+      default:
+        finishText.innerHTML = slogans.bad;
+    }
+  };
+
   const prepareNextQuestion = function () {
     if (state.checked) {
-      state.questionsTLimit += 1;
-      console.log();
-      if (state.questionsTLimit == 15) {
+      state.answeredQuestions += 1;
+      if (state.answeredQuestions === state.questionsLimit) {
         hideWrapper();
         displayFinishOverlay();
         resetButtons();
         displayPoints(overlayPointsEl);
+        displayFinalWords();
       } else {
         displayRandomQuestion();
         resetButtons();
@@ -152,11 +184,13 @@ const quizApp = function () {
   };
 
   const resetQuiz = function () {
-    state.questionsTLimit = 0;
+    state.answeredQuestions = 0;
+    state.questionsLimit = 0;
     state.displayedQuestionIndices = [];
     state.remainingQuestions = [];
     state.points = 0;
     displayPoints(pointsEl);
+    console.log(state);
   };
 
   const hideGreetingOverlay = function () {

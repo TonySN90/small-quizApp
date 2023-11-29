@@ -21,7 +21,7 @@ const overlayPointsEl = document.querySelector("#overlayPoints");
 const quizApp = function () {
   const state = {
     correctAnswerIndex: 0,
-    currentQuestion: 0,
+    questionsTLimit: 0,
     points: 0,
     checked: false,
     displayedQuestionIndices: [],
@@ -112,8 +112,9 @@ const quizApp = function () {
 
   const prepareNextQuestion = function () {
     if (state.checked) {
-      state.currentQuestion += 1;
-      if (questionData.length === state.displayedQuestionIndices.length) {
+      state.questionsTLimit += 1;
+      console.log();
+      if (state.questionsTLimit == 15) {
         hideWrapper();
         displayFinishOverlay();
         resetButtons();
@@ -151,7 +152,7 @@ const quizApp = function () {
   };
 
   const resetQuiz = function () {
-    state.currentQuestion = 0;
+    state.questionsTLimit = 0;
     state.displayedQuestionIndices = [];
     state.remainingQuestions = [];
     state.points = 0;

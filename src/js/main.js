@@ -6,19 +6,17 @@ import { questionData } from "./data.js";
 // Elements
 const wrapper = document.querySelector("#wrapper");
 const questionEl = document.querySelector("#question");
-const answerButtons = document.querySelectorAll(".button");
-const answerBtn_01 = document.querySelector("#answerButton_00");
-const answerBtn_02 = document.querySelector("#answerButton_01");
-const answerBtn_03 = document.querySelector("#answerButton_02");
-const answerBtn_04 = document.querySelector("#answerButton_03");
+const answerBtns = document.querySelectorAll(".answerButton");
 const startBtn = document.querySelector("#startButton");
 const againBtn = document.querySelector("#againButton");
 const displaySolutionBtn = document.querySelector("#result");
 const nextBtn = document.querySelector("#next");
 const pointsEl = document.querySelector("#points");
 const overlayPointsEl = document.querySelector("#overlayPoints");
-const finishText = document.querySelector(".finishText");
-const QUESTION_LIMIT = 15;
+const finishTextEl = document.querySelector(".finishText");
+
+// config
+const QUESTION_LIMIT = 25;
 
 const quizApp = function () {
   const state = {
@@ -41,10 +39,9 @@ const quizApp = function () {
 
   const updateDOM = function (question, answers) {
     questionEl.innerHTML = question;
-    answerBtn_01.innerHTML = answers[0];
-    answerBtn_02.innerHTML = answers[1];
-    answerBtn_03.innerHTML = answers[2];
-    answerBtn_04.innerHTML = answers[3];
+    answerBtns.forEach((btn, index) => {
+      btn.innerHTML = answers[index];
+    });
   };
 
   const displayRandomQuestion = function () {
@@ -64,6 +61,8 @@ const quizApp = function () {
     );
 
     const data = state.remainingQuestions[randomQuestionIndex];
+
+    // Add the index of the current data (data) to the list of displayed question indices.
     state.displayedQuestionIndices.push(questionData.indexOf(data));
 
     const answers = [
@@ -107,7 +106,7 @@ const quizApp = function () {
   };
 
   const resetButtons = function () {
-    answerButtons.forEach((btn) => {
+    answerBtns.forEach((btn) => {
       btn.classList.remove("wrong");
       btn.classList.remove("correct");
     });
@@ -118,7 +117,7 @@ const quizApp = function () {
     const slogans = {
       bad: "Schlecht, schlechter..Du ! xD Geh in die Ecke und schäm dich oder versuchs nochmal..! 🤨",
       middle:
-        "Naja, ne geistige Leuchte bist noch nicht aber zum Überleben reichts..! 🤨",
+        "Naja, ne geistige Leuchte biste noch nicht aber zum Überleben reichts..! 🤨",
       good: "Nicht schlecht, gibt aber noch Luft nach oben, wie deine Qualität im Bett..! 🤨",
       super:
         "Du Glücklicher, dein Gehirn hat also doch noch Sinn in deinem Leben..! 🤨",
@@ -127,19 +126,19 @@ const quizApp = function () {
 
     switch (true) {
       case pointsInPercent === 100:
-        finishText.innerHTML = slogans.perfect;
+        finishTextEl.innerHTML = slogans.perfect;
         break;
       case pointsInPercent >= 85:
-        finishText.innerHTML = slogans.super;
+        finishTextEl.innerHTML = slogans.super;
         break;
       case pointsInPercent >= 65:
-        finishText.innerHTML = slogans.good;
+        finishTextEl.innerHTML = slogans.good;
         break;
       case pointsInPercent >= 50:
-        finishText.innerHTML = slogans.middle;
+        finishTextEl.innerHTML = slogans.middle;
         break;
       default:
-        finishText.innerHTML = slogans.bad;
+        finishTextEl.innerHTML = slogans.bad;
     }
   };
 
@@ -148,7 +147,7 @@ const quizApp = function () {
       state.answeredQuestions += 1;
       if (state.answeredQuestions === state.questionsLimit) {
         hideWrapper();
-        displayFinishOverlay();
+        displayElement(".finish");
         resetButtons();
         displayPoints(overlayPointsEl);
         displayFinalWords();
@@ -194,24 +193,30 @@ const quizApp = function () {
     console.log(state);
   };
 
-  const hideGreetingOverlay = function () {
-    document.querySelector(".greeting").classList.add("hidden");
+  const hideElement = function (selector) {
+    const element = document.querySelector(selector);
+    if (element) {
+      element.classList.add("hidden");
+    }
   };
 
-  const displayFinishOverlay = function () {
-    document.querySelector(".finish").classList.remove("hidden");
-  };
-
-  const hideFinishOverlay = function () {
-    document.querySelector(".finish").classList.add("hidden");
+  const displayElement = function (selector) {
+    const element = document.querySelector(selector);
+    if (element) {
+      element.classList.remove("hidden");
+    }
   };
 
   const displayWrapper = function () {
-    wrapper.style.display = "flex";
+    if (wrapper) {
+      wrapper.style.display = "flex";
+    }
   };
 
   const hideWrapper = function () {
-    wrapper.style.display = "none";
+    if (wrapper) {
+      wrapper.style.display = "none";
+    }
   };
 
   const initialize = function () {
@@ -222,21 +227,18 @@ const quizApp = function () {
 
   // Click functions
   startBtn.addEventListener("click", () => {
-    hideGreetingOverlay();
+    hideElement(".greeting");
     displayWrapper();
   });
 
   againBtn.addEventListener("click", () => {
     resetQuiz();
     displayWrapper();
-    hideFinishOverlay();
+    hideElement(".finish");
     initialize();
   });
 
-  answerBtn_01.addEventListener("click", checkSelection);
-  answerBtn_02.addEventListener("click", checkSelection);
-  answerBtn_03.addEventListener("click", checkSelection);
-  answerBtn_04.addEventListener("click", checkSelection);
+  answerBtns.forEach((btn) => btn.addEventListener("click", checkSelection));
   nextBtn.addEventListener("click", prepareNextQuestion);
   displaySolutionBtn.addEventListener("click", displaySolution);
 };

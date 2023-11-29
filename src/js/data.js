@@ -189,13 +189,6 @@ export const questionData = [
       "Wie nennt man den Prozess, bei dem Pflanzen Licht in Energie umwandeln?",
   },
   {
-    category: "Geographie",
-    id: "8932464598",
-    correctAnswer: "Nil",
-    incorrectAnswers: ["Amazonas", "Jangtsekiang", "Mekong"],
-    question: "Welcher Fluss ist der längste der Welt?",
-  },
-  {
     category: "Literatur",
     id: "34457282906",
     correctAnswer: "Gabriel Garcia Marquez",
@@ -295,14 +288,14 @@ export const questionData = [
   // difficult
   {
     category: "Wissenschaft",
-    id: "21",
+    id: "2211265761",
     correctAnswer: "Higgs-Boson",
     incorrectAnswers: ["Quark-Gluon-Plasma", "Graviton", "Neutrino"],
     question: "Welches Elementarteilchen wurde 2012 am CERN entdeckt?",
   },
   {
     category: "Geographie",
-    id: "22",
+    id: "28469897892",
     correctAnswer: "McMurdo-Station",
     incorrectAnswers: [
       "Amundsen-Scott-Südpolstation",
@@ -313,35 +306,35 @@ export const questionData = [
   },
   {
     category: "Literatur",
-    id: "23",
+    id: "2335864787",
     correctAnswer: "Fyodor Dostoevsky",
     incorrectAnswers: ["Leo Tolstoy", "Anton Chekhov", "Ivan Turgenev"],
     question: "Wer schrieb 'Die Brüder Karamasow'?",
   },
   {
     category: "Sport",
-    id: "24",
+    id: "2494780874",
     correctAnswer: "Ayrton Senna",
     incorrectAnswers: ["Alain Prost", "Michael Schumacher", "Niki Lauda"],
     question: "Welcher Formel-1-Fahrer starb 1994 bei einem Rennen in Imola?",
   },
   {
     category: "Film",
-    id: "25",
+    id: "2439678995",
     correctAnswer: "Akira Kurosawa",
     incorrectAnswers: ["Ingmar Bergman", "Federico Fellini", "Stanley Kubrick"],
     question: "Welcher Regisseur schuf den Film 'Die sieben Samurai'?",
   },
   {
     category: "Geschichte",
-    id: "26",
+    id: "2356786786",
     correctAnswer: "Babylonischer Talmud",
     incorrectAnswers: ["Mishnah", "Jerusalemer Talmud", "Midrasch"],
     question: "Welches jüdische Schriftwerk ist die Grundlage des Talmuds?",
   },
   {
     category: "Wissenschaft",
-    id: "27",
+    id: "2089605787",
     correctAnswer: "Heisenberg",
     incorrectAnswers: ["Schroedinger", "Bohr", "Einstein"],
     question:
@@ -349,14 +342,14 @@ export const questionData = [
   },
   {
     category: "Geographie",
-    id: "28",
+    id: "2356765788",
     correctAnswer: "Andorra",
     incorrectAnswers: ["Liechtenstein", "San Marino", "Monaco"],
     question: "Welches europäische Land hat keinen Flughafen?",
   },
   {
     category: "Literatur",
-    id: "29",
+    id: "2890806899",
     correctAnswer: "Italo Calvino",
     incorrectAnswers: [
       "Gabriel Garcia Marquez",
@@ -367,14 +360,14 @@ export const questionData = [
   },
   {
     category: "Sport",
-    id: "30",
+    id: "8678467860",
     correctAnswer: "Bobby Fischer",
     incorrectAnswers: ["Garry Kasparov", "Anatoly Karpov", "Mikhail Tal"],
     question: "Wer war der Schachweltmeister im Jahr 1972?",
   },
   {
     category: "Film",
-    id: "31",
+    id: "3356869771",
     correctAnswer: "Terrence Malick",
     incorrectAnswers: [
       "David Lynch",
@@ -385,7 +378,7 @@ export const questionData = [
   },
   {
     category: "Geschichte",
-    id: "32",
+    id: "8678446732",
     correctAnswer: "Bundesverfassungsgericht",
     incorrectAnswers: [
       "Reichsgericht",
@@ -397,35 +390,35 @@ export const questionData = [
   },
   {
     category: "Wissenschaft",
-    id: "33",
+    id: "3356867863",
     correctAnswer: "Max Planck",
     incorrectAnswers: ["Erwin Schrödinger", "Niels Bohr", "Werner Heisenberg"],
     question: "Wer formulierte das Plancksche Wirkungsquantum?",
   },
   {
     category: "Geographie",
-    id: "34",
+    id: "3089ß06894",
     correctAnswer: "Murmansk",
     incorrectAnswers: ["Arkhangelsk", "Vladivostok", "Kaliningrad"],
     question: "Welche russische Stadt liegt am weitesten nördlich?",
   },
   {
     category: "Literatur",
-    id: "35",
+    id: "6795678977",
     correctAnswer: "Salman Rushdie",
     incorrectAnswers: ["Arundhati Roy", "Orhan Pamuk", "Kazuo Ishiguro"],
     question: "Wer wurde für 'Die satanischen Verse' mit einer Fatwa belegt?",
   },
   {
     category: "Sport",
-    id: "36",
+    id: "2475855886",
     correctAnswer: "Sergei Bubka",
     incorrectAnswers: ["Renaud Lavillenie", "Yelena Isinbayeva", "Pole Vault"],
     question: "Wer hält den Weltrekord im Stabhochsprung?",
   },
   {
     category: "Film",
-    id: "37",
+    id: "3678366737",
     correctAnswer: "A Clockwork Orange",
     incorrectAnswers: [
       "Blade Runner",
@@ -436,14 +429,14 @@ export const questionData = [
   },
   {
     category: "Geschichte",
-    id: "38",
+    id: "3578057898",
     correctAnswer: "Karl der Große",
     incorrectAnswers: ["Augustus", "Napoleon Bonaparte", "Peter der Große"],
     question: "Wer war der erste Kaiser des Heiligen Römischen Reiches?",
   },
   {
     category: "Wissenschaft",
-    id: "39",
+    id: "3768967989",
     correctAnswer: "Lise Meitner",
     incorrectAnswers: [
       "Marie Curie",
@@ -454,9 +447,253 @@ export const questionData = [
   },
   {
     category: "Geographie",
-    id: "40",
+    id: "4236798780",
     correctAnswer: "Lake Baikal",
     incorrectAnswers: ["Caspian Sea", "Superior Lake", "Victoria Lake"],
     question: "Welcher See hat das größte Volumen aller Seen der Welt?",
+  },
+  {
+    category: "Wissenschaft",
+    id: "5978089641",
+    correctAnswer: "CRISPR-Cas9",
+    incorrectAnswers: [
+      "RNA-Interferenz",
+      "TAL Effektoren",
+      "Zinkfinger-Nukleasen",
+    ],
+    question:
+      "Welche Technologie wird für die gezielte Genomeditierung verwendet?",
+  },
+  {
+    category: "Geographie",
+    id: "4225868668",
+    correctAnswer: "Timbuktu",
+    incorrectAnswers: ["Kathmandu", "Ouagadougou", "Reykjavik"],
+    question: "Welche Stadt wird als 'Stadt der 333 Heiligen' bezeichnet?",
+  },
+  {
+    category: "Literatur",
+    id: "4920398533",
+    correctAnswer: "J.D. Salinger",
+    incorrectAnswers: ["Harper Lee", "F. Scott Fitzgerald", "Ernest Hemingway"],
+    question: "Wer schrieb 'Der Fänger im Roggen'?",
+  },
+  {
+    category: "Sport",
+    id: "4967856754",
+    correctAnswer: "Sébastien Loeb",
+    incorrectAnswers: ["Lewis Hamilton", "Ayrton Senna", "Michael Schumacher"],
+    question:
+      "Wer hält den Rekord für die meisten Siege in der Rallye-Weltmeisterschaft?",
+  },
+  {
+    category: "Film",
+    id: "4362798785",
+    correctAnswer: "Ingmar Bergman",
+    incorrectAnswers: ["Akira Kurosawa", "Federico Fellini", "Stanley Kubrick"],
+    question: "Wer führte Regie bei 'Das siebente Siegel'?",
+  },
+  {
+    category: "Geschichte",
+    id: "4269789766",
+    correctAnswer: "Schlacht von Gaugamela",
+    incorrectAnswers: [
+      "Schlacht von Cannae",
+      "Schlacht von Waterloo",
+      "Schlacht von Stalingrad",
+    ],
+    question:
+      "In welcher Schlacht besiegte Alexander der Große das persische Reich?",
+  },
+  {
+    category: "Wissenschaft",
+    id: "4909044677",
+    correctAnswer: "Schwarzes Loch",
+    incorrectAnswers: ["Neutronenstern", "Weiße Zwerg", "Quasar"],
+    question: "Was entsteht, wenn ein massiver Stern kollabiert?",
+  },
+  {
+    category: "Geographie",
+    id: "4678678668",
+    correctAnswer: "Bhutan",
+    incorrectAnswers: ["Nepal", "Bangladesch", "Myanmar"],
+    question:
+      "Welches Land ist bekannt für seine Verwendung des Bruttonationalglücks als Messgröße?",
+  },
+  {
+    category: "Literatur",
+    id: "2758678949",
+    correctAnswer: "Gabriel Garcia Marquez",
+    incorrectAnswers: ["Isabel Allende", "Julio Cortázar", "Pablo Neruda"],
+    question:
+      "Welcher kolumbianische Schriftsteller erhielt den Nobelpreis für Literatur im Jahr 1982?",
+  },
+  {
+    category: "Sport",
+    id: "3586784450",
+    correctAnswer: "Florence Griffith-Joyner",
+    incorrectAnswers: ["Usain Bolt", "Michael Johnson", "Carl Lewis"],
+    question: "Wer hält den Weltrekord im 100-Meter-Lauf der Frauen?",
+  },
+  {
+    category: "Film",
+    id: "5356798691",
+    correctAnswer: "Francis Ford Coppola",
+    incorrectAnswers: [
+      "Martin Scorsese",
+      "Quentin Tarantino",
+      "Christopher Nolan",
+    ],
+    question: "Wer führte Regie bei 'Apocalypse Now'?",
+  },
+  {
+    category: "Geschichte",
+    id: "5408908082",
+    correctAnswer: "Konstantin der Große",
+    incorrectAnswers: ["Julius Caesar", "Augustus", "Napoleon Bonaparte"],
+    question: "Wer verlegte die Hauptstadt des Römischen Reiches nach Byzanz?",
+  },
+  {
+    category: "Wissenschaft",
+    id: "5578053563",
+    correctAnswer: "Richard Feynman",
+    incorrectAnswers: ["Niels Bohr", "Werner Heisenberg", "Max Planck"],
+    question:
+      "Welcher Physiker erhielt den Nobelpreis für Physik 1965 für seine Beiträge zur Quantenelektrodynamik?",
+  },
+  {
+    category: "Geographie",
+    id: "5467866784",
+    correctAnswer: "Tadschikistan",
+    incorrectAnswers: ["Turkmenistan", "Kirgisistan", "Usbekistan"],
+    question: "Welches zentralasiatische Land hat die Hauptstadt Duschanbe?",
+  },
+  {
+    category: "Literatur",
+    id: "3568678655",
+    correctAnswer: "Hermann Hesse",
+    incorrectAnswers: ["Thomas Mann", "Franz Kafka", "Rainer Maria Rilke"],
+    question: "Wer schrieb 'Siddhartha'?",
+  },
+  {
+    category: "Sport",
+    id: "5367970986",
+    correctAnswer: "Marta",
+    incorrectAnswers: ["Birgit Prinz", "Abby Wambach", "Homare Sawa"],
+    question:
+      "Welche brasilianische Fußballerin wurde sechsmal zur FIFA-Weltfußballerin des Jahres gewählt?",
+  },
+  {
+    category: "Film",
+    id: "5245678677",
+    correctAnswer: "Coen-Brüder",
+    incorrectAnswers: ["Wachowskis", "Farrelly-Brüder", "Russo-Brüder"],
+    question: "Wer sind die Regisseure von 'No Country for Old Men'?",
+  },
+  {
+    category: "Geschichte",
+    id: "5267588668",
+    correctAnswer: "Chinesische Mauer",
+    incorrectAnswers: ["Hadrianswall", "Berliner Mauer", "Antoninuswall"],
+    question: "Welches Bauwerk ist eines der 'Sieben Weltwunder der Neuzeit'?",
+  },
+  {
+    category: "Wissenschaft",
+    id: "5356868679",
+    correctAnswer: "James Clerk Maxwell",
+    incorrectAnswers: ["Isaac Newton", "Michael Faraday", "Galileo Galilei"],
+    question:
+      "Wer formulierte die Gleichungen, die die elektromagnetische Theorie beschreiben?",
+  },
+  {
+    category: "Geographie",
+    id: "8325673560",
+    correctAnswer: "Tuvalu",
+    incorrectAnswers: ["Nauru", "Kiribati", "Palau"],
+    question:
+      "Welches Land besteht ausschließlich aus niedrigen, flachen Atollen?",
+  },
+  {
+    category: "Literatur",
+    id: "6128675565",
+    correctAnswer: "Homer",
+    incorrectAnswers: ["Sophokles", "Euripides", "Aristophanes"],
+    question: "Wer ist der Verfasser der 'Ilias' und der 'Odyssee'?",
+  },
+  {
+    category: "Sport",
+    id: "6245675652",
+    correctAnswer: "Kenenisa Bekele",
+    incorrectAnswers: ["Haile Gebrselassie", "Mo Farah", "Eliud Kipchoge"],
+    question: "Wer hält den Weltrekord im 10.000-Meter-Lauf?",
+  },
+  {
+    category: "Film",
+    id: "9683567563",
+    correctAnswer: "Jean-Pierre Jeunet",
+    incorrectAnswers: ["Pedro Almodóvar", "Wim Wenders", "Lars von Trier"],
+    question: "Wer führte Regie bei 'Die fabelhafte Welt der Amélie'?",
+  },
+  {
+    category: "Geschichte",
+    id: "1457586764",
+    correctAnswer: "Kubakrise",
+    incorrectAnswers: [
+      "Berlin-Krise",
+      "U-2-Zwischenfall",
+      "Ungarischer Volksaufstand",
+    ],
+    question:
+      "Welches Ereignis führte 1962 fast zu einem Atomkrieg zwischen den USA und der UdSSR?",
+  },
+  {
+    category: "Wissenschaft",
+    id: "6469735675",
+    correctAnswer: "Paul Dirac",
+    incorrectAnswers: ["Enrico Fermi", "Wolfgang Pauli", "Max Born"],
+    question:
+      "Wer erhielt den Nobelpreis für Physik 1933 für die Entdeckung neuer produktiver Formen der Atomtheorie?",
+  },
+  {
+    category: "Geographie",
+    id: "2486986566",
+    correctAnswer: "Swasiland",
+    incorrectAnswers: ["Lesotho", "Namibia", "Botswana"],
+    question:
+      "Welches afrikanische Land wird auch als 'Königreich Eswatini' bezeichnet?",
+  },
+  {
+    category: "Literatur",
+    id: "4690909867",
+    correctAnswer: "Milan Kundera",
+    incorrectAnswers: ["Günter Grass", "Haruki Murakami", "Mario Vargas Llosa"],
+    question: "Wer schrieb 'Die unerträgliche Leichtigkeit des Seins'?",
+  },
+  {
+    category: "Sport",
+    id: "68906ß90ß8",
+    correctAnswer: "Rafael Nadal",
+    incorrectAnswers: ["Roger Federer", "Novak Djokovic", "Pete Sampras"],
+    question:
+      "Wer ist der einzige Spieler, der die French Open 13-mal gewonnen hat?",
+  },
+  {
+    category: "Film",
+    id: "6953453167",
+    correctAnswer: "Alfred Hitchcock",
+    incorrectAnswers: ["Stanley Kubrick", "Federico Fellini", "Akira Kurosawa"],
+    question: "Wer ist bekannt als 'Meister des Suspense'?",
+  },
+  {
+    category: "Geschichte",
+    id: "7034534534",
+    correctAnswer: "Magna Carta",
+    incorrectAnswers: [
+      "Glorious Revolution",
+      "Bill of Rights",
+      "Petition of Right",
+    ],
+    question:
+      "Welches Dokument aus dem Jahr 1215 legte die Grundlage für die moderne Verfassung?",
   },
 ];

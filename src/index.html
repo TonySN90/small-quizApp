@@ -4,28 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blitz-Quiz - Dein Quiz mit Biss</title>
+    <!-- Falls vorhanden -->
   </head>
   <body>
     <div id="wrapper">
-      <h1 id="question">Wie heisst die Hauptstadt von Deutschland?</h1>
+      <h1 id="question">Wie heißt die Hauptstadt von Deutschland?</h1>
       <div class="containerAnswerButtons">
-        <div id="answerButton_00" data-id="0" class="answerButton button">
+        <button id="answerButton_00" data-id="0" class="answerButton button">
           Hamburg
-        </div>
-        <div id="answerButton_01" data-id="1" class="answerButton button">
+        </button>
+        <button id="answerButton_01" data-id="1" class="answerButton button">
           München
-        </div>
-        <div id="answerButton_02" data-id="2" class="answerButton button">
+        </button>
+        <button id="answerButton_02" data-id="2" class="answerButton button">
           Hannover
-        </div>
-        <div id="answerButton_03" data-id="3" class="answerButton button">
+        </button>
+        <button id="answerButton_03" data-id="3" class="answerButton button">
           Berlin
-        </div>
+        </button>
       </div>
       <div class="containerNavButtons">
         <div class="navButtons">
-          <div id="result" class="navButton">Zeige Lösung</div>
-          <div id="next" class="navButton">Weiter</div>
+          <button id="result" class="navButton">Zeige Lösung</button>
+          <button id="next" class="navButton">Weiter</button>
         </div>
         <div id="points">Punkte: 0</div>
       </div>
@@ -37,15 +38,15 @@
           gelabert, also leg gleich los, bring dein Brain zum Schmelzen und dein
           Birne zum Platzen..! 🤯
         </p>
-        <div id="startButton" class="button">Lets go!</div>
+        <button id="startButton" class="button">Let's go!</button>
       </div>
       <div class="finish overlay hidden">
         <p class="finishText">
-          Schlecht, schlechter..Du ! xD Geh in die Ecke und schäm dich oder
-          machs nochmal..! 🤨
+          Schlecht, schlechter..Du! xD Geh in die Ecke und schäm dich oder
+          mach's nochmal..! 🤨
         </p>
         <p id="overlayPoints">Punkte: 12</p>
-        <div id="againButton" class="button">Nochmal!</div>
+        <button id="againButton" class="button">Nochmal!</button>
       </div>
     </div>
     <script type="module" src="./js/main.js"></script>

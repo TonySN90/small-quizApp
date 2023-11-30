@@ -7,8 +7,8 @@
   </head>
   <body>
     <div id="quiz">
-      <h4 id="quiz__question-number"></h4>
-      <h1 id="quiz__question">Wie heißt die Hauptstadt von Deutschland?</h1>
+      <h4>Frage Nr. 1 von 25</h4>
+      <h1>Wie heißt die Hauptstadt von Deutschland?</h1>
       <div class="quiz__answer-buttons">
         <button id="quiz__answer-button-00" data-id="0" class="button">
           Hamburg
@@ -28,26 +28,31 @@
           <button id="quiz__result-button" class="nav-button">
             Zeige Lösung
           </button>
-          <button id="next" class="nav-button">Weiter</button>
+          <button id="quiz__next-button" class="nav-button">Weiter</button>
         </div>
         <div id="quiz__points">Punkte: 0</div>
       </div>
     </div>
-    <div id="overlay">
+    <div id="overlay__container">
       <div class="overlay__greeting overlay">
         <p>
-          Willkommen bei Blitz-Quiz, dein Quiz mit Biss. Hier wird nicht lang
-          gelabert, also leg gleich los, bring dein Brain zum Schmelzen und dein
+          Willkommen bei <span>Blitz-Quiz</span>, dein Quiz mit Biss. Hier wird
+          nicht lang gelabert, also leg gleich los, denn die kommenden
+          <span>25</span> Fragen bringen dein Brain zum Schmelzen und deine
           Birne zum Platzen..! 🤯
         </p>
         <button id="startButton" class="button">Let's go!</button>
       </div>
       <div class="overlay__finish overlay hidden">
         <p class="overlay__finish-text">
-          Schlecht, schlechter..Du! xD Geh in die Ecke und schäm dich oder
-          mach's nochmal..! 🤨
+          Nicht ganz auf der Höhe, aber Übung macht den Meister! 😉
         </p>
         <p id="overlay__points">Punkte: 12</p>
+        <p>
+          Übrigens: Quizze nochmal, denn es warten viele weitere Fragen auf
+          dich! 😉
+        </p>
+
         <button class="button">Nochmal!</button>
       </div>
     </div>

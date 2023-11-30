@@ -1,4 +1,4 @@
-@import "default";
+@import "variables";
 @import url("https://fonts.googleapis.com/css2?family=Changa:wght@300;400;500&display=swap");
 
 // Generel -------------------
@@ -8,7 +8,9 @@ body {
   justify-content: center;
   align-items: center;
 
-  height: 95vh;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 
   background-color: $color-bg-dark;
 }
@@ -45,6 +47,7 @@ body {
   flex-direction: column;
   align-items: center;
 
+  padding: 1rem;
   max-width: 820px;
 
   color: $color-font-bright;
@@ -55,19 +58,15 @@ body {
     text-align: center;
 
     height: 12rem;
-    margin: 0;
+    margin: 2rem 0 0 0;
 
-    font-size: 3rem;
+    font-size: 2.8rem;
     line-height: 3rem;
   }
 
   h4 {
     margin: 0;
     font-size: 2rem;
-  }
-
-  #quiz__question {
-    margin-top: 2rem;
   }
 
   .quiz__answer-buttons {
@@ -91,18 +90,16 @@ body {
       transition: 0.1s;
       cursor: pointer;
 
-      &:hover {
-        z-index: 1;
+      &::after {
+        @include afterShadow();
+      }
 
+      &:hover {
         transform: scale(1.01);
         border: 5px solid $color-primary;
 
         background-color: $color-bg-dark;
         color: $color-primary;
-      }
-
-      &::after {
-        @include afterShadow();
       }
     }
     .correct {
@@ -184,7 +181,7 @@ body {
 
 // Overlay ----------------------------
 
-#overlay {
+#overlay__container {
   position: relative;
 
   .overlay {
@@ -201,8 +198,25 @@ body {
     font-size: 2rem;
     font-weight: bold;
 
+    p {
+      span {
+        color: $color-font-bright;
+        cursor: pointer;
+      }
+    }
+
     &::after {
       @include afterShadow();
+    }
+  }
+
+  .overlay__finish {
+    p {
+      margin: 1rem;
+
+      &:nth-child(3) {
+        font-size: 1.8rem;
+      }
     }
   }
 
@@ -238,7 +252,7 @@ body {
 // Media queries
 
 @media only screen and (max-width: 850px) {
-  #overlay {
+  #overlay__container {
     .overlay {
       width: 580px;
       font-size: 1.8rem;
@@ -267,13 +281,23 @@ body {
     }
   }
 
-  #overlay {
+  #overlay__container {
     .overlay {
       width: 95%;
       padding-inline: 1rem;
       margin-inline: auto;
 
       font-size: 1.5rem;
+    }
+
+    .overlay__finish {
+      p {
+        margin: 1rem;
+
+        &:nth-child(3) {
+          font-size: 1.4rem;
+        }
+      }
     }
   }
 
@@ -292,7 +316,7 @@ body {
     }
   }
 }
-@media only screen and (max-width: 300px) {
+@media only screen and (max-width: 320px) {
   #quiz {
     height: 600px;
 

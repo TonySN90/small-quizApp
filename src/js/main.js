@@ -5,20 +5,20 @@ import { questionData } from "./data.js";
 
 // Elements
 const wrapper = document.querySelector("#quiz");
-const questionEl = document.querySelector("#quiz__question");
-const questionNumberEl = document.querySelector("#quiz__question-number");
-const answerBtns = document.querySelectorAll(".quiz__answer-buttons > button");
+const questionEl = document.querySelector("#quiz h1");
+const questionNumberEl = document.querySelector("#quiz h4");
+const answerBtns = document.querySelectorAll(".quiz__answer-buttons button");
 
-const startBtn = document.querySelector("#startButton");
-const againBtn = document.querySelector(".overlay__finish > button");
+const startBtn = document.querySelector(".overlay__greeting button");
+const againBtn = document.querySelector(".overlay__finish button");
 const displayResultBtn = document.querySelector("#quiz__result-button");
-const nextBtn = document.querySelector("#next");
+const nextBtn = document.querySelector("#quiz__next-button");
 const pointsEl = document.querySelector("#quiz__points");
 const overlayPointsEl = document.querySelector("#overlay__points");
 const finishTextEl = document.querySelector(".overlay__finish-text");
 
 // config
-const QUESTION_LIMIT = 4;
+const QUESTION_LIMIT = 25;
 
 const quizApp = function () {
   const state = {
@@ -120,13 +120,13 @@ const quizApp = function () {
   const displayFinalWords = function () {
     const pointsInPercent = (state.points / state.questionsLimit) * 100;
     const slogans = {
-      bad: "Schlecht, schlechter..Du ! xD Geh in die Ecke und schäm dich oder versuchs nochmal..! 🤨",
+      bad: "Nicht ganz auf der Höhe, aber Übung macht den Meister! 😉",
       middle:
-        "Naja, ne geistige Leuchte biste noch nicht aber zum Überleben reichts..! 🤨",
-      good: "Nicht schlecht, gibt aber noch Luft nach oben, wie deine Qualität im Bett..! 🤨",
+        "Na ja, noch nicht gerade ein Genie, aber du kommst durch den Alltag! 😄",
+      good: "Solide Leistung, aber da geht noch was - genau wie im Fitnessstudio! 😊",
       super:
-        "Du Glücklicher, dein Gehirn hat also doch noch Sinn in deinem Leben..! 🤨",
-      perfect: "Mhh..Das geht doch nicht mit rechten Dingen zu..! 🤨",
+        "Nicht schlecht! Dein Gehirn zeigt Potenzial und das ist doch schon was! 👍",
+      perfect: "Beeindruckend! Man könnte meinen du hast gemogelt! 🌟",
     };
 
     switch (true) {
@@ -159,7 +159,6 @@ const quizApp = function () {
       } else {
         displayRandomQuestion();
         resetButtons();
-        console.log(state.currentQuestion);
         displayQuestionNumber();
       }
     }
@@ -231,7 +230,6 @@ const quizApp = function () {
   };
 
   const initialize = function () {
-    console.log(state.currentQuestion);
     displayRandomQuestion();
     displayQuestionNumber();
   };

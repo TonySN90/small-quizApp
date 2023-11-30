@@ -4,35 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blitz-Quiz - Dein Quiz mit Biss</title>
-    <!-- Falls vorhanden -->
   </head>
   <body>
-    <div id="wrapper">
-      <h1 id="question">Wie heißt die Hauptstadt von Deutschland?</h1>
-      <div class="containerAnswerButtons">
-        <button id="answerButton_00" data-id="0" class="answerButton button">
+    <div id="quiz">
+      <h4 id="quiz__question-number"></h4>
+      <h1 id="quiz__question">Wie heißt die Hauptstadt von Deutschland?</h1>
+      <div class="quiz__answer-buttons">
+        <button id="quiz__answer-button-00" data-id="0" class="button">
           Hamburg
         </button>
-        <button id="answerButton_01" data-id="1" class="answerButton button">
+        <button id="quiz__answer-button-01" data-id="1" class="button">
           München
         </button>
-        <button id="answerButton_02" data-id="2" class="answerButton button">
+        <button id="quiz__answer-button-02" data-id="2" class="button">
           Hannover
         </button>
-        <button id="answerButton_03" data-id="3" class="answerButton button">
+        <button id="quiz__answer-button-03" data-id="3" class="button">
           Berlin
         </button>
       </div>
-      <div class="containerNavButtons">
-        <div class="navButtons">
-          <button id="result" class="navButton">Zeige Lösung</button>
-          <button id="next" class="navButton">Weiter</button>
+      <div class="quiz__nav-buttons">
+        <div class="quiz__nav-buttons-group">
+          <button id="quiz__result-button" class="nav-button">
+            Zeige Lösung
+          </button>
+          <button id="next" class="nav-button">Weiter</button>
         </div>
-        <div id="points">Punkte: 0</div>
+        <div id="quiz__points">Punkte: 0</div>
       </div>
     </div>
-    <div id="overlayContainer">
-      <div class="greeting overlay">
+    <div id="overlay">
+      <div class="overlay__greeting overlay">
         <p>
           Willkommen bei Blitz-Quiz, dein Quiz mit Biss. Hier wird nicht lang
           gelabert, also leg gleich los, bring dein Brain zum Schmelzen und dein
@@ -40,13 +42,13 @@
         </p>
         <button id="startButton" class="button">Let's go!</button>
       </div>
-      <div class="finish overlay hidden">
-        <p class="finishText">
+      <div class="overlay__finish overlay hidden">
+        <p class="overlay__finish-text">
           Schlecht, schlechter..Du! xD Geh in die Ecke und schäm dich oder
           mach's nochmal..! 🤨
         </p>
-        <p id="overlayPoints">Punkte: 12</p>
-        <button id="againButton" class="button">Nochmal!</button>
+        <p id="overlay__points">Punkte: 12</p>
+        <button class="button">Nochmal!</button>
       </div>
     </div>
     <script type="module" src="./js/main.js"></script>

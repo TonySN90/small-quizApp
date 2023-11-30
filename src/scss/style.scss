@@ -1,122 +1,162 @@
 @import "default";
 @import url("https://fonts.googleapis.com/css2?family=Changa:wght@300;400;500&display=swap");
 
+// Generel -------------------
+
 body {
-  // margin: 0.5rem;
-  // padding: 0;
-
-  background-color: $color-bg-dark;
-  height: 95vh;
-
   display: flex;
   justify-content: center;
   align-items: center;
+
+  height: 95vh;
+
+  background-color: $color-bg-dark;
 }
 
 * {
-  font-family: $changa;
   box-sizing: border-box;
+  font-family: $changa;
 }
 
 .hidden {
   display: none;
 }
 
-#wrapper {
-  color: $color-font-bright;
-  max-width: 820px;
+// Mixins ---------------------
 
+@mixin afterShadow {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  border-radius: $border-radius;
+
+  box-shadow: 5px 5px 20px #000;
+}
+
+// quiz --------------------
+
+#quiz {
   display: none;
   flex-direction: column;
   align-items: center;
 
-  h1 {
-    margin: 0;
-    // min-height: 10rem;
-    font-size: 3rem;
+  max-width: 820px;
 
+  color: $color-font-bright;
+
+  h1 {
     display: flex;
     align-items: center;
     text-align: center;
+
+    height: 12rem;
+    margin: 0;
+
+    font-size: 3rem;
     line-height: 3rem;
   }
 
-  #question {
+  h4 {
+    margin: 0;
+    font-size: 2rem;
+  }
+
+  #quiz__question {
     margin-top: 2rem;
   }
 
-  .containerAnswerButtons {
-    margin-top: 1rem;
-
+  .quiz__answer-buttons {
     display: flex;
     text-align: center;
     flex-wrap: wrap;
 
-    .button {
+    margin-top: 1rem;
+
+    button {
+      position: relative;
+
       width: 100%;
-      font-size: 2.5rem;
-      background-color: $color-primary;
+      margin: 0.5rem 0;
       border: 5px solid $color-primary;
       border-radius: $border-radius;
-      margin: 0.5rem 0;
+
+      background-color: $color-primary;
       color: $color-bg-dark;
+      font-size: 2.5rem;
       transition: 0.1s;
       cursor: pointer;
 
       &:hover {
-        transform: scale(1.02);
+        z-index: 1;
+
+        transform: scale(1.01);
         border: 5px solid $color-primary;
+
         background-color: $color-bg-dark;
-        color: $color-font-bright;
+        color: $color-primary;
+      }
+
+      &::after {
+        @include afterShadow();
       }
     }
     .correct {
-      background-color: $color-correct;
       border: 5px solid $color-correct;
+      background-color: $color-correct;
 
       &:hover {
-        background-color: $color-correct;
         border: 5px solid $color-correct;
+        background-color: $color-correct;
+        color: $color-bg-dark;
       }
     }
 
     .wrong {
-      background-color: $color-wrong;
       border: 5px solid $color-wrong;
+      background-color: $color-wrong;
 
       &:hover {
-        background-color: $color-wrong;
         border: 5px solid $color-wrong;
+        background-color: $color-wrong;
+        color: $color-bg-dark;
       }
     }
   }
 }
 
-.containerNavButtons {
-  width: 100%;
+// Navigation Bar ---------------
+
+.quiz__nav-buttons {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-top: 3rem;
-  gap: 1rem;
 
-  .navButtons {
+  width: 100%;
+  gap: 1rem;
+  margin-top: 3rem;
+
+  .quiz__nav-buttons-group {
     display: flex;
     gap: 0.5rem;
 
-    .navButton {
+    .nav-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       width: 10rem;
       height: 3rem;
       border: 3px solid $color-primary;
       border-radius: $border-radius;
-      font-size: 1.3rem;
 
+      font-size: 1.3rem;
       background-color: $color-bg-dark;
       color: $color-font-bright;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
       transition: all 0.2s;
       cursor: pointer;
 
@@ -127,55 +167,62 @@ body {
     }
   }
 
-  #points {
-    width: 11rem;
-    background-color: $color-primary;
+  #quiz__points {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.3rem;
 
+    width: 11rem;
     border-radius: $border-radius;
+
+    background-color: $color-primary;
     color: $color-bg-dark;
+    font-size: 1.3rem;
     cursor: default;
   }
 }
 
-#overlayContainer {
-  position: fixed;
+// Overlay ----------------------------
+
+#overlay {
+  position: relative;
 
   .overlay {
-    width: 820px;
-    padding: 2rem;
-
-    background-color: $color-primary;
-    border-radius: 1rem;
-
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 
+    width: 820px;
+    padding: 2rem;
+    border-radius: $border-radius;
+
+    background-color: $color-primary;
     font-size: 2rem;
     font-weight: bold;
+
+    &::after {
+      @include afterShadow();
+    }
   }
 
   .button {
     width: 12rem;
     height: 3rem;
-    font-size: 1.5rem;
+    border: 3px solid $color-primary;
+    border-radius: 0.5rem;
+
     background-color: $color-bg-dark;
     color: $color-primary;
     text-align: center;
-    border: 3px solid $color-primary;
-    border-radius: 0.5rem;
+    font-size: 1.5rem;
     transition: all 0.3s;
     cursor: pointer;
 
     &:hover {
+      border: 3px solid $color-bg-dark;
       background-color: $color-primary;
       color: $color-bg-dark;
-      border: 3px solid $color-bg-dark;
     }
   }
 
@@ -191,7 +238,7 @@ body {
 // Media queries
 
 @media only screen and (max-width: 850px) {
-  #overlayContainer {
+  #overlay {
     .overlay {
       width: 580px;
       font-size: 1.8rem;
@@ -200,55 +247,71 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
-  #wrapper {
+  #quiz {
     h1 {
+      height: 7rem;
+
       font-size: 1.5rem;
+      line-height: 2rem;
     }
 
-    .containerAnswerButtons {
+    h4 {
+      font-size: 1rem;
+    }
+
+    .quiz__answer-buttons {
       .button {
-        font-size: 1.5rem;
         margin-block: 0.3rem;
+        font-size: 1.5rem;
       }
     }
   }
 
-  #overlayContainer {
+  #overlay {
     .overlay {
       width: 95%;
-      font-size: 1.5rem;
       padding-inline: 1rem;
       margin-inline: auto;
+
+      font-size: 1.5rem;
     }
   }
 
-  .containerNavButtons {
-    .navButtons {
+  .quiz__nav-buttons {
+    .quiz__nav-buttons-group {
       width: 100%;
 
-      .navButton {
+      .nav-button {
         width: 100%;
       }
     }
 
-    #points {
+    #quiz__points {
       width: 60%;
       margin-inline: auto;
     }
   }
 }
 @media only screen and (max-width: 300px) {
-  .navButtons {
+  #quiz {
+    height: 600px;
+
+    h1 {
+      height: auto;
+    }
+  }
+
+  .quiz__nav-buttons-group {
     width: 100%;
     flex-wrap: wrap;
 
-    .navButton {
+    .nav-button {
       width: 100%;
     }
   }
 
-  .containerNavButtons {
-    #points {
+  .quiz__nav-buttons {
+    #quiz__points {
       width: 100%;
     }
   }

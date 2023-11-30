@@ -4,22 +4,25 @@ import "./../scss/style.scss";
 import { questionData } from "./data.js";
 
 // Elements
-const wrapper = document.querySelector("#wrapper");
-const questionEl = document.querySelector("#question");
-const answerBtns = document.querySelectorAll(".answerButton");
+const wrapper = document.querySelector("#quiz");
+const questionEl = document.querySelector("#quiz__question");
+const questionNumberEl = document.querySelector("#quiz__question-number");
+const answerBtns = document.querySelectorAll(".quiz__answer-buttons > button");
+
 const startBtn = document.querySelector("#startButton");
-const againBtn = document.querySelector("#againButton");
-const displaySolutionBtn = document.querySelector("#result");
+const againBtn = document.querySelector(".overlay__finish > button");
+const displayResultBtn = document.querySelector("#quiz__result-button");
 const nextBtn = document.querySelector("#next");
-const pointsEl = document.querySelector("#points");
-const overlayPointsEl = document.querySelector("#overlayPoints");
-const finishTextEl = document.querySelector(".finishText");
+const pointsEl = document.querySelector("#quiz__points");
+const overlayPointsEl = document.querySelector("#overlay__points");
+const finishTextEl = document.querySelector(".overlay__finish-text");
 
 // config
-const QUESTION_LIMIT = 25;
+const QUESTION_LIMIT = 4;
 
 const quizApp = function () {
   const state = {
+    currentQuestion: 0,
     correctAnswerIndex: 0,
     answeredQuestions: 0,
     questionsLimit: QUESTION_LIMIT,
@@ -77,6 +80,8 @@ const quizApp = function () {
 
     // store index of correct answer
     state.correctAnswerIndex = answers.indexOf(data.correctAnswer);
+
+    state.currentQuestion += 1;
   };
 
   const checkSelection = function (e) {
@@ -84,7 +89,7 @@ const quizApp = function () {
       const selectedButton = e.target;
       const targetID = +selectedButton.dataset.id;
       const correctBtn = document.querySelector(
-        `#answerButton_0${state.correctAnswerIndex}`
+        `#quiz__answer-button-0${state.correctAnswerIndex}`
       );
 
       const handleAnswer = (operator, truthValue) => {
@@ -147,13 +152,15 @@ const quizApp = function () {
       state.answeredQuestions += 1;
       if (state.answeredQuestions === state.questionsLimit) {
         hideWrapper();
-        displayElement(".finish");
+        displayElement(".overlay__finish");
         resetButtons();
         displayPoints(overlayPointsEl);
         displayFinalWords();
       } else {
         displayRandomQuestion();
         resetButtons();
+        console.log(state.currentQuestion);
+        displayQuestionNumber();
       }
     }
     state.checked = false;
@@ -168,13 +175,17 @@ const quizApp = function () {
   };
 
   const displayPoints = function (el) {
-    el.innerHTML = `Punkte: ${state.points} von ${state.questionsLimit}`;
+    el.innerHTML = `Punkte: ${state.points}`;
   };
 
-  const displaySolution = function () {
+  const displayQuestionNumber = function () {
+    questionNumberEl.innerHTML = `Frage Nr. ${state.currentQuestion} von ${state.questionsLimit}`;
+  };
+
+  const displayResult = function () {
     if (!state.checked) {
       const correctBtn = document.querySelector(
-        `#answerButton_0${state.correctAnswerIndex}`
+        `#quiz__answer-button-0${state.correctAnswerIndex}`
       );
       calculatePoints("-", 2);
       displayPoints(pointsEl);
@@ -189,8 +200,8 @@ const quizApp = function () {
     state.displayedQuestionIndices = [];
     state.remainingQuestions = [];
     state.points = 0;
+    state.currentQuestion = 0;
     displayPoints(pointsEl);
-    console.log(state);
   };
 
   const hideElement = function (selector) {
@@ -220,27 +231,29 @@ const quizApp = function () {
   };
 
   const initialize = function () {
+    console.log(state.currentQuestion);
     displayRandomQuestion();
+    displayQuestionNumber();
   };
 
   initialize();
 
   // Click functions
   startBtn.addEventListener("click", () => {
-    hideElement(".greeting");
+    hideElement(".overlay__greeting");
     displayWrapper();
   });
 
   againBtn.addEventListener("click", () => {
     resetQuiz();
     displayWrapper();
-    hideElement(".finish");
+    hideElement(".overlay__finish");
     initialize();
   });
 
   answerBtns.forEach((btn) => btn.addEventListener("click", checkSelection));
   nextBtn.addEventListener("click", prepareNextQuestion);
-  displaySolutionBtn.addEventListener("click", displaySolution);
+  displayResultBtn.addEventListener("click", displayResult);
 };
 
 quizApp();

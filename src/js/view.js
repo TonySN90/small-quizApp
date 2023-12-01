@@ -1,5 +1,7 @@
 "use strict";
 
+import * as utils from "./utils.js";
+
 const wrapper = document.querySelector("#quiz");
 const pointsEl = document.querySelector("#quiz__points");
 console.log(pointsEl);
@@ -50,7 +52,7 @@ export const displayResult = function (state) {
     const correctBtn = document.querySelector(
       `#quiz__answer-button-0${state.correctAnswerIndex}`
     );
-    calculatePoints("-", 2);
+    utils.calculatePoints("-", 2);
     displayPoints(state);
     correctBtn.classList.add("correct");
     state.checked = true;

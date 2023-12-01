@@ -1,10 +1,11 @@
 "use strict";
 
 import "./../scss/style.scss";
-import { questionData } from "./data.js";
+import { questionData } from "./data_web.js";
 import * as config from "./config.js";
 import * as utils from "./utils.js";
 import * as view from "./view.js";
+console.log(config.QUESTION_LIMIT);
 
 // Elements
 const answerBtns = document.querySelectorAll(".quiz__answer-buttons button");
